@@ -738,12 +738,14 @@ begin
     end;
     if MessageDlg(Format('%d items selected for deletion, continue?', [marked.Count]), mtInformation, mbYesNo, 0) <> mrYes then
       exit;
+    // sort indices so we can use them below
+    marked.SortItems;
     // collect names
     SetLength(names, marked.Count);
     for i:= 0 to high(names) do
       names[i]:= GetImageInfo(marked[i])^.FullName(fSourcePaths);
     SendFilesToTrash(names);
-    // files that were successfully deleted can be freed
+    // files that were successfully deleted can be freed, in reverse order because fImageInfos changes!
     for i:= marked.Count-1 downto 0 do begin
       idx:= marked[i];
       im:= GetImageInfo(idx);

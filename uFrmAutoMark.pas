@@ -46,7 +46,7 @@ var
   imageInfos: PImageInfoList;
   c: TCluster;
   skipstate: set of TImageMark;
-  idx, i, j, m, cluster_seen, cluster_skipped, marked_delete: integer;
+  idx, i, m, cluster_seen, cluster_skipped, marked_delete: integer;
   im: PImageInfoItem;
   b: boolean;
 

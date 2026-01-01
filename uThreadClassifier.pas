@@ -37,6 +37,7 @@ type
     function Release: integer;
     procedure Append(aItem: integer);
     procedure Delete(aIndex: integer);
+    procedure SortItems;
     property Item[Index: Integer]: integer read GetItem; default;
     function CheckInsertIntoCluster(im: PImageInfoItem; aList: PImageInfoList; MaxDistance: integer): boolean;
   end;
@@ -202,6 +203,16 @@ begin
   System.Delete(Items, aIndex, 1);
 end;
 
+function Integer_Sort_Comparer(Item1, Item2, Context: Pointer): Integer;
+begin
+  Result:= PInteger(Item1)^ - PInteger(Item2)^;
+end;
+
+procedure TCluster.SortItems;
+begin
+  DefaultSortingAlgorithm^.ItemListSorter_ContextComparer(@Items[0], Length(Items), Sizeof(Integer), @Integer_Sort_Comparer, nil);
+end;
+
 function TCluster.GetItem(Index: Integer): integer;
 begin
   Result:= Items[Index];
@@ -364,7 +375,7 @@ var
   im, r: PImageInfoItem;
   chosenCluster: TCluster;
   c: TCluster;
-  i, ci: integer;
+  i: integer;
   matchclusters: TClusterList;
 begin   
   Priority:= tpLowest;
