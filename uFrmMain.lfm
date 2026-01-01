@@ -503,6 +503,7 @@ object fmMain: TfmMain
         Align = alBottom
         Caption = 'lbHoverfile'
         ParentFont = False
+        ShowAccelChar = False
       end
     end
   end
