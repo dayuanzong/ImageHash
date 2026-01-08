@@ -649,6 +649,11 @@ begin
   if not ImageAtXY(X, Y, index, i) then
     exit;
 
+  if (Button = mbLeft) and (ssCtrl in Shift) then begin
+    Button:= mbMiddle;
+    Exclude(Shift, ssCtrl);
+  end;
+
   c:= lbClusters.Items.Objects[Index] as TCluster;
   im:= GetImageInfo(c[i]);
   case Button of
@@ -656,7 +661,7 @@ begin
     mbMiddle:
       try
         Screen.BeginWaitCursor;
-        if ssCtrl in Shift then
+        if ssShift in Shift then
           OpenFolderAndSelectFile(im^.FullName(fSourcePaths))
         else
           OpenDocument(im^.FullName(fSourcePaths));
@@ -766,8 +771,8 @@ begin
   MessageDlg('Select images to remove or keep.' + sLineBreak +
              'LMB: toggle remove/keep' + sLineBreak +
              'RMB: ignore cluster for AutoMark' + sLineBreak +
-             'MMB: open image in default app' + sLineBreak +
-             'Ctrl+MMB: show in containing folder',
+             'MMB, Ctrl+LMB: open image in default app' + sLineBreak +
+             'Shift+MMB, Ctrl+Shift+LMB: show in containing folder',
              mtInformation, [mbOK], 0);
 end;
 
