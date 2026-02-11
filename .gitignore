@@ -1,0 +1,12 @@
+data*/*
+obj/*
+bin_*/*
+*.lps
+lib/*
+backup/*
+*.ppu
+*.o
+*.or
+*.a
+*.compiled
+*.bak

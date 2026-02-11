@@ -1,0 +1,20 @@
+{
+  "threads": 16,
+  "thumb": 48,
+  "tolerance": 3,
+  "min_dim": 0,
+  "paths": [
+    {
+      "path": "K:/已切图素材/dst_2",
+      "include_subdirs": true
+    }
+  ],
+  "auto_mark": {
+    "res": true,
+    "comp": true,
+    "size": true,
+    "dir": true,
+    "old": true,
+    "only_unmarked": true
+  }
+}
